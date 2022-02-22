@@ -57,6 +57,12 @@ public class ArrayBag<T> implements BagInterface<T> {
         return counter;
     }
 
+    public T remove(){
+        checkIntegrity();
+        T result = removeEntry(numberOfEntries -1);
+        return result;
+    }
+
     public boolean remove(T anEntry){
         checkIntegrity();
         int index = getIndexOf(anEntry);
@@ -93,29 +99,22 @@ public class ArrayBag<T> implements BagInterface<T> {
         return result;
     } 
 
+    public void clear(){
+        while(!isEmpty()){
+            remove();
+        }
+    }
+
+    public boolean contains(T anEntry){
+        checkIntegrity();
+        return getIndexOf(anEntry) > -1;
+    }
+
     public boolean isFull(){
         return numberOfEntries == bag.length;
     }
 
-    /** this method returns an array that contains the contents of bag recieving the
-     * call to the method and the bag that is the methods's argument 
-     * @param x an ArrayBag to be combined with the ArrayBag that the method is being called on
-     * @return an array that contains the union between the two ArrayBags
-     */
-    /*
-    public T[] union(BagInterface<T> x){
-        int size = this.getCurrentSize() + x.getCurrentSize();
-        T[] returnArray = new this.getBag()[0].getType()[size];
-        int counter = 0;
-        for(int i = 0; i < this.getCurrentSize(); i++){
-            returnArray[i] = this.getBag()[i];
-            counter++;
-        }
-        for(int i = counter; i < x.getCurrentSize() + counter; i++){
-            returnArray[i] = x.getBag()[i];
-        }
-        return returnArray;
-        
-        
-    }*/
+    public T[] toArray(){
+        return bag;
+    }
 }
