@@ -20,12 +20,8 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     private void checkIntegrity(){
         if(!integrityOK){
-            throw new SecurityException("Arraybag object is corupt.");
+            throw new SecurityException("ArrayBag object is corrupt.");
         }
-    }
-
-    public T[] getBag(){
-        return bag;
     }
 
     public int getCurrentSize(){
@@ -49,6 +45,54 @@ public class ArrayBag<T> implements BagInterface<T> {
         return result;
     }
 
+    public int getFrequencyOf(T anEntry){
+        checkIntegrity();
+        int counter = 0;
+
+        for(int i = 0; i < bag.length; i++){
+            if(anEntry.equals(bag[i])){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public boolean remove(T anEntry){
+        checkIntegrity();
+        int index = getIndexOf(anEntry);
+        T result = removeEntry(index);
+        return anEntry.equals(result);
+        
+    }
+
+    private int getIndexOf(T anEntry){
+        int where = -1;
+        boolean found = false;
+        int index = 0;
+
+        while (!found && (index < numberOfEntries)){
+            if (anEntry.equals(bag[index])){
+                found = true;
+                where = index;
+            }
+        index++;
+        } 
+
+        return where;
+    }
+
+    private T removeEntry(int givenIndex){
+		T result = null;
+      
+		if (!isEmpty() && (givenIndex >= 0)){
+            result = bag[givenIndex];                   
+            bag[givenIndex] = bag[numberOfEntries - 1]; 
+            bag[numberOfEntries - 1] = null;           
+            numberOfEntries--;
+		} 
+        return result;
+    } 
+
     public boolean isFull(){
         return numberOfEntries == bag.length;
     }
@@ -58,8 +102,10 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @param x an ArrayBag to be combined with the ArrayBag that the method is being called on
      * @return an array that contains the union between the two ArrayBags
      */
+    /*
     public T[] union(BagInterface<T> x){
-        T[] returnArray;
+        int size = this.getCurrentSize() + x.getCurrentSize();
+        T[] returnArray = new this.getBag()[0].getType()[size];
         int counter = 0;
         for(int i = 0; i < this.getCurrentSize(); i++){
             returnArray[i] = this.getBag()[i];
@@ -71,5 +117,5 @@ public class ArrayBag<T> implements BagInterface<T> {
         return returnArray;
         
         
-    }
+    }*/
 }
