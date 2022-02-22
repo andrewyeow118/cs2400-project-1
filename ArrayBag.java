@@ -24,7 +24,9 @@ public class ArrayBag<T> implements BagInterface<T> {
         }
     }
 
-
+    public T[] getBag(){
+        return bag;
+    }
 
     public int getCurrentSize(){
         return numberOfEntries;
@@ -35,6 +37,7 @@ public class ArrayBag<T> implements BagInterface<T> {
     }
 
     public boolean add(T newEntry){
+        checkIntegrity();
         boolean result = true;
         if(isFull()){
             return false;
@@ -48,5 +51,25 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     public boolean isFull(){
         return numberOfEntries == bag.length;
+    }
+
+    /** this method returns an array that contains the contents of bag recieving the
+     * call to the method and the bag that is the methods's argument 
+     * @param x an ArrayBag to be combined with the ArrayBag that the method is being called on
+     * @return an array that contains the union between the two ArrayBags
+     */
+    public T[] union(BagInterface<T> x){
+        T[] returnArray;
+        int counter = 0;
+        for(int i = 0; i < this.getCurrentSize(); i++){
+            returnArray[i] = this.getBag()[i];
+            counter++;
+        }
+        for(int i = counter; i < x.getCurrentSize() + counter; i++){
+            returnArray[i] = x.getBag()[i];
+        }
+        return returnArray;
+        
+        
     }
 }
