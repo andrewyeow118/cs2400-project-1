@@ -69,7 +69,12 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return result;
 	}
 	
-	private Node getReferenceTo(T anEntry) {
+	/**
+	 * retrieves reference to Node containing specified data, or null if data is missing
+	 * @param anEntry object to search for
+	 * @return reference to Node containg specified object
+	 */
+	public Node getReferenceTo(T anEntry) {
 		checkIntegrity();
 		
 		boolean found = false;
@@ -84,6 +89,11 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return currentNode;
 	}
 	
+	/**
+	 * Removes the first Node in the chain containing the specified data, replaces it with data stored in first node, and erases the first node. Returns false if data does not exist in the bag.
+	 * @param anEntry the object to be removed
+	 * @return true if data was succesfully removed
+	 */
 	public boolean remove(T anEntry) {
 		boolean result = false;
 		Node targetNode = getReferenceTo(anEntry);
@@ -134,11 +144,18 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return false;
 	}
 	
+	/**
+	 * Removes all nodes from the Linked Bag
+	 */
 	public void clear() {
 		while (!isEmpty())
 			remove();
 	}
 	
+	/**
+	 * Converts the data stored in the bag into a fixed array of that exact size and returns it.
+	 * @return An unordered array of all the objects contained in the Linked Bag
+	 */
 	public T[] toArray() {
 		checkIntegrity();
 		
