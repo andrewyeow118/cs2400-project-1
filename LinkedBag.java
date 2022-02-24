@@ -22,12 +22,20 @@ public class LinkedBag<T> implements BagInterface<T> {
 	    }
 	}
 	
+	/**
+	 * shows size of bag
+	 * @return number of entries currently stored in the bag
+	 */
 	public int getCurrentSize(){
         return numberOfEntries;
     }
 
+	/**
+	 * shows whether bag is empty or not
+	 * @return true if firstNode is null
+	 */
     public boolean isEmpty(){
-        return numberOfEntries == 0;
+        return firstNode = null;
     }
 	
 	/**
@@ -61,6 +69,39 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return result;
 	}
 	
+	public Node getReferenceTo(T anEntry) {
+		boolean found = false;
+		Node currentNode = firstNode;
+		
+		while (!found && (currentNode == null)) {
+			if(anEntry.equals(currentNode.getData()))
+				found=true;
+			else
+				currentNode = currentNode.getNextNode();
+		}
+		return currentNode;
+	}
+	
+	public boolean remove(T anEntry) {
+		boolean result = false;
+		Node targetNode = getReferenceTo(anEntry);
+		
+		if (targetNode != null) {
+			targetNode.setData(firstNode.getData());
+			firstNode = firstNode.getNextNode();
+			
+			numberOfEntries--;
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param anEntry returns if 
+	 * @return
+	 */
 	public int getFrequencyOf(T anEntry) {
 		int count = 0;
 		Node currentNode = firstNode;
@@ -72,6 +113,11 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return count;
 	}
 	
+	/**
+	 * shows if a particular object exists in the Linked Bag
+	 * @param anEntry the object that will be searched for
+	 * @return true if the object "anEntry" exists in the bag's linked chain
+	 */
 	public boolean contains(T anEntry) {
 		Node currentNode = firstNode;
 		while(currentNode != null) {
@@ -81,6 +127,24 @@ public class LinkedBag<T> implements BagInterface<T> {
 		}
 		return false;
 	}
+	
+	public void clear() {
+		while (!isEmpty())
+			remove();
+	}
+	
+	public T[] toArray() {
+		Node currentNode = firstNode;
+		T[] tempArray = new T[numberOfEntries];
+		
+		for (x = 0; x < numberOfEntries; x++) {
+			tempArray[x] = currentNode.getData();
+		}
+		
+		return tempArray;
+	}
+	
+	
 	
 	/**
 	 * 
@@ -94,7 +158,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 		
 		/**
 		 * Used to construct first Node
-		 * @param dataLink: piece of data stored in initial Node
+		 * @param dataLink piece of data stored in initial Node
 		 */
 		private Node (T dataPiece) {
 			this(dataPiece, null);
@@ -102,8 +166,8 @@ public class LinkedBag<T> implements BagInterface<T> {
 		
 		/**
 		 * Sets portion of data held in this Node, and the pointer to the next
-		 * @param sets a reference to a peice of data
-		 * @param points to next linked Node
+		 * @param dataPiece sets a reference to a peice of data
+		 * @param next points to next linked Node
 		 */
 		private Node(T dataPiece, Node next) {
 			data = dataPiece;
@@ -119,7 +183,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 		
 		/**
 		 * changes the data stored in this node
-		 * @param new data
+		 * @param newData new data
 		 */
 		private void setData(T newData) {
 			data = newData;
@@ -134,7 +198,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 		
 		/**
 		 * changes the linked node referenced by "next"
-		 * @param sets the node that this one points to
+		 * @param nextNode sets the node that this one points to
 		 */
 		private void setNextNode(Node nextNode) {
 			next = nextNode;
