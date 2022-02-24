@@ -1,15 +1,85 @@
+/**
+ * 
+ * @author Dylan
+ *
+ * @param <T>
+ */
 public class LinkedBag<T> implements BagInterface<T> {
 	
 	private Node firstNode;
 	private int numberOfEntries;
+	private static boolean integrityOK = false;
 	
 	public LinkedBag() {
 		firstNode = null;
 		numberOfEntries = 0;
+		integrityOK = true;
 	}
 	
+	private void checkIntegrity(){
+	    if(!integrityOK){
+	        throw new SecurityException("LinkedBag object is corrupt.");
+	    }
+	}
+	
+	public int getCurrentSize(){
+        return numberOfEntries;
+    }
+
+    public boolean isEmpty(){
+        return numberOfEntries == 0;
+    }
+	
+	/**
+	 * Creates a new node in the 1st position and has it point to the old 1st Node
+	 * @param newEntry
+	 * @return true if successful
+	 */
 	public boolean add(T newEntry) {
+		checkIntegrity();
 		
+		Node newNode = new Node(newEntry);
+		newNode.setNextNode(firstNode);
+		firstNode = newNode;
+		numberOfEntries++;
+		return true;
+	}
+	
+	/**
+	 * Removes the first node in the linked chain, and sets the second node to 1st
+	 * @return the removed data
+	 */
+	public T remove( ) {
+		checkIntegrity();
+		
+		T result = null;
+		if (firstNode != null) {
+			result = firstNode.getData();
+			firstNode = firstNode.getNextNode();
+			numberOfEntries--;
+		}
+		return result;
+	}
+	
+	public int getFrequencyOf(T anEntry) {
+		int count = 0;
+		Node currentNode = firstNode;
+		while(currentNode != null) {
+			if (anEntry.equals(currentNode.getData()))
+				count++;
+			currentNode = currentNode.getNextNode();
+		}
+		return count;
+	}
+	
+	public boolean contains(T anEntry) {
+		Node currentNode = firstNode;
+		while(currentNode != null) {
+			if (anEntry.equals(currentNode.getData()))
+				return true;
+			currentNode = currentNode.getNextNode();
+		}
+		return false;
 	}
 	
 	/**
