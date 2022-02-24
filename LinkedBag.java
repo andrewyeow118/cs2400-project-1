@@ -69,7 +69,9 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return result;
 	}
 	
-	public Node getReferenceTo(T anEntry) {
+	private Node getReferenceTo(T anEntry) {
+		checkIntegrity();
+		
 		boolean found = false;
 		Node currentNode = firstNode;
 		
@@ -103,6 +105,8 @@ public class LinkedBag<T> implements BagInterface<T> {
 	 * @return
 	 */
 	public int getFrequencyOf(T anEntry) {
+		checkIntegrity();
+		
 		int count = 0;
 		Node currentNode = firstNode;
 		while(currentNode != null) {
@@ -119,6 +123,8 @@ public class LinkedBag<T> implements BagInterface<T> {
 	 * @return true if the object "anEntry" exists in the bag's linked chain
 	 */
 	public boolean contains(T anEntry) {
+		checkIntegrity();
+		
 		Node currentNode = firstNode;
 		while(currentNode != null) {
 			if (anEntry.equals(currentNode.getData()))
@@ -134,6 +140,8 @@ public class LinkedBag<T> implements BagInterface<T> {
 	}
 	
 	public T[] toArray() {
+		checkIntegrity();
+		
 		Node currentNode = firstNode;
 		T[] tempArray = new T[numberOfEntries];
 		
