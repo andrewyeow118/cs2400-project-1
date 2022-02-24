@@ -113,14 +113,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return result;
     }
 
-    /*public T[] union(T[] bag2)
+
+    public BagInterface<T> union(BagInterface<T> bag2) 
     {
-        int length = numberOfEntries + bag2.length;
+        int length = numberOfEntries + bag2.getCurrentSize();
         @SuppressWarnings("unchecked")
-        T[] result = (T[])new Object[length];
-        for (int i = 0 ; i < length ; i++)
+        //T[] result = (T[])new Object[length];
+        BagInterface<T> result = new ResizableArrayBag<>();
+        int index = numberOfEntries - 1;
+        for (int i = 0 ; i < numberOfEntries ; i++)
         {
-            result[i] 
+            
         }
-    }*/
+        return result;
+    }
 }

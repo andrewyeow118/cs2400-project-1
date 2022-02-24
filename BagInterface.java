@@ -15,9 +15,9 @@ public interface BagInterface<T>
 	public boolean isEmpty();
 	
 	/** Adds a new entry to this bag.
-	    @param newEntry  The object to be added as a new entry.
+	    @param bag  The object to be added as a new entry.
 	    @return  True if the addition is successful, or false if not. */
-	public boolean add(T newEntry);
+	public boolean add(T bag);
 
 	/** Removes one unspecified entry from this bag, if possible.
        @return  Either the removed entry, if the removal.
@@ -46,4 +46,7 @@ public interface BagInterface<T>
 		 @return  A newly allocated array of all the entries in the bag.
                 Note: If the bag is empty, the returned array is empty. */
 	public T[] toArray();
+
+	public BagInterface<T> union(BagInterface<T> bag2);
+	
 } // end BagInterface

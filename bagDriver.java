@@ -7,6 +7,6 @@ public class bagDriver
         bag1.add("a");
         bag1.add("a");
         bag1.add("a");
-        System.out.println(bag1.toArray());
+        BagInterface<String> everything = bag1.union(bag2);
     }
 }
