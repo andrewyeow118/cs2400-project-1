@@ -6,7 +6,22 @@ public class bagDriver
         BagInterface<String> bag2 = new ResizableArrayBag<>();
         bag1.add("a");
         bag1.add("a");
-        bag1.add("a");
-        BagInterface<String> everything = bag1.union(bag2);
+        bag1.add("b");
+        bag1.add("c");
+        bag2.add("a");
+        bag2.add("b");
+        bag2.add("b");
+        bag2.add("b");
+        bag2.add("d");
+        /*BagInterface<String> everything = bag1.union(bag2);
+        for (int i = 0 ; i < everything.getCurrentSize() ; i++)
+        {
+            System.out.print(everything.getEntry(i) + "  ");
+        }*/
+        BagInterface<String> commonItems = bag1.intersection(bag2);
+        for (int i = 0 ; i < commonItems.getCurrentSize() ; i++)
+        {
+            System.out.print(commonItems.getEntry(i) + "  ");
+        }
     }
 }
