@@ -1,8 +1,11 @@
+import java.util.Arrays;
 public class ResizableArrayBag<T> implements BagInterface<T> 
 {
-    private final T[] bag;
+    private T[] bag;
     private static final int defaultCapacity = 25;
     private int numberOfEntries;
+    private boolean initialized = false;
+    private static final int MAX_CAPACITY = 10000;
     
     public ResizableArrayBag()
     {
@@ -30,7 +33,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 	public boolean add(T newEntry)
     {
         if (numberOfEntries == defaultCapacity)
-            return false;
+        {
+            bag = Arrays.copyOf(bag, 2 * bag.length);
+            
+        }
         else
         {
             bag[numberOfEntries] = newEntry;
