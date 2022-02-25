@@ -8,6 +8,8 @@ public class bagDriver
         bag1.add("a");
         bag1.add("b");
         bag1.add("c");
+        bag1.add("c");
+        bag1.add("d");
         bag2.add("a");
         bag2.add("b");
         bag2.add("b");
@@ -18,10 +20,17 @@ public class bagDriver
         {
             System.out.print(everything.getEntry(i) + "  ");
         }*/
-        BagInterface<String> commonItems = bag1.intersection(bag2);
+
+        /*BagInterface<String> commonItems = bag1.intersection(bag2);
         for (int i = 0 ; i < commonItems.getCurrentSize() ; i++)
         {
             System.out.print(commonItems.getEntry(i) + "  ");
+        }*/ 
+
+        BagInterface<String> leftOver = bag1.difference(bag2);
+        for (int i = 0 ; i < leftOver.getCurrentSize() ; i++)
+        {
+            System.out.print(leftOver.getEntry(i) + "  ");
         }
     }
 }

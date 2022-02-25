@@ -1,7 +1,7 @@
 import java.util.Arrays;
 public class ResizableArrayBag<T> implements BagInterface<T> 
 {
-    private T[] bag;
+    private T[] bag; //cannot be final since it is resizable array bag
     private static final int defaultCapacity = 25;
     private int numberOfEntries;
     private boolean integrityOK = false;
@@ -84,7 +84,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 	public T remove()
     {
         T result = removeEntry(numberOfEntries - 1);
-        numberOfEntries--;
         return result;
     }
 
@@ -92,7 +91,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     {
         int index = getIndexOf(anEntry);
         T result = removeEntry(index);
-        numberOfEntries--;
         return result.equals(anEntry);
     }
 
@@ -127,8 +125,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         T[] result = (T[])new Object[numberOfEntries];
         for (int i = 0 ; i < numberOfEntries ; i++)
         {
-            result[i] = bag[i];
-            System.out.print(result[i]);
+            result[i] = this.getEntry(i);
         }
         return result;
     }
@@ -138,9 +135,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return bag[index];
     }
 
+    //remove method specifically for difference method
+    public boolean differenceRemove(T anEntry)
+    {
+        int index = getIndexOf(anEntry);
+        bag[index] = null;
+        return true;
+    }
+
 
     public BagInterface<T> union(BagInterface<T> bag2) 
     {
+        //we are only getting entries from bag1 and bag2, so no need to clone them
         BagInterface<T> result = new ResizableArrayBag<>();
         for (int i = 0 ; i < numberOfEntries ; i++)
             result.add(bag[i]);
@@ -151,18 +157,46 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
-        BagInterface<T> result = new ResizableArrayBag<>();
+        //bag1's contents do not get changed, so no need to clone bag1
+        BagInterface<T> result = new ResizableArrayBag<>(); 
+        BagInterface<T> bag2Clone = bag2;
         for (int i = 0 ; i < numberOfEntries ; i++)
         {
             for (int j = 0 ; j < bag2.getCurrentSize() ; j++)
             {
-                if (this.getEntry(i).equals(bag2.getEntry(j)))
+                if (bag[i].equals(bag2Clone.getEntry(j)))
                 {
-                    result.add(this.getEntry(i));
-                    bag2.remove(bag2.getEntry(j));
+                    result.add(bag[i]);
+                    bag2Clone.remove(bag2Clone.getEntry(j));
+                    break;
                 }
             }
         }
+        return result;
+    }
+
+    public BagInterface<T> difference(BagInterface<T> bag2)
+    {
+        /*bag1 and bag2 are cloned because we must remove their common items
+        and add the leftovers from bag1*/
+        BagInterface<T> result = new ResizableArrayBag<>();
+        BagInterface<T> bag1Clone = this;
+        BagInterface<T> bag2Clone = bag2;
+        for (int i = 0 ; i < bag1Clone.getCurrentSize() ; i++)
+        {
+            for (int j = 0 ; j < bag2Clone.getCurrentSize() ; j++)
+            {
+                if (bag1Clone.getEntry(i).equals(bag2Clone.getEntry(j)))
+                {
+                    bag1Clone.differenceRemove(bag1Clone.getEntry(i));
+                    bag2Clone.remove(bag2Clone.getEntry(j));
+                    break;
+                }
+            }
+        }
+        for (int i = 0 ; i < this.getCurrentSize() ; i++)
+        if (bag1Clone.getEntry(i) != null)
+                result.add(bag1Clone.getEntry(i));
         return result;
     }
 }
