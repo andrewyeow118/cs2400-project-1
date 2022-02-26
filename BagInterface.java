@@ -9,6 +9,8 @@ public interface BagInterface<T> {
     public int getFrequencyOf(T anEntry);
     public boolean contains(T anEntry);
     public T[] toArray();
+    public T getValue(int index);
+    public BagInterface<T> copyOf();
     
     /** this method returns an ArrayBag that contains the contents that are common 
      * to both the ArrayBag that the method is being called on and the ArrryBag that is in 
