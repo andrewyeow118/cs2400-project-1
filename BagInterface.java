@@ -47,8 +47,11 @@ public interface BagInterface<T>
                 Note: If the bag is empty, the returned array is empty. */
 	public T[] toArray();
 
+	//Returns an entry based on given index
 	public T getEntry(int index);
 
+	//modified remove method for difference method
+	//removes an entry without replacing or decreasing numberOfEntries
 	public boolean differenceRemove(T anEntry);
 
 	public BagInterface<T> union(BagInterface<T> bag2);
@@ -56,6 +59,5 @@ public interface BagInterface<T>
 	public BagInterface<T> intersection(BagInterface<T> bag2);
 
 	public BagInterface<T> difference(BagInterface<T> bag2);
-
 
 } // end BagInterface

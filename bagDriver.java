@@ -34,7 +34,7 @@ public class bagDriver
             bag1.add(bag1arr[i]);
         for (int i = 0 ; i < bag2arr.length ; i++)
             bag2.add(bag2arr[i]);
-        BagInterface<String> commonItems = bag1.intersection(bag2);
+        BagInterface<String> commonItems = bag1.intersection(bag2); //intersection should be  a, b, c, c, d, e
         System.out.print("Intersection:  ");
         for (int i = 0 ; i < commonItems.getCurrentSize() ; i++)
             System.out.print(commonItems.getEntry(i) + "  ");
@@ -51,7 +51,7 @@ public class bagDriver
             bag1.add(bag1arr[i]);
         for (int i = 0 ; i < bag2arr.length ; i++)
             bag2.add(bag2arr[i]);
-        BagInterface<String> leftOver1 = bag1.difference(bag2);  //difference should be a, e, z, g
+        BagInterface<String> leftOver1 = bag1.difference(bag2);  //difference should be  a, e, z, g
         System.out.print("Difference 1:  ");
         for (int i = 0 ; i < leftOver1.getCurrentSize() ; i++)
             System.out.print(leftOver1.getEntry(i) + "  ");

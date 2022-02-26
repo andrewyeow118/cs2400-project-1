@@ -130,14 +130,16 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return result;
     }
 
+    //returns entry at given index
     public T getEntry(int index)
     {
         return bag[index];
     }
 
-    //remove method specifically for difference method
+    //modified remove method specifically for difference method
     public boolean differenceRemove(T anEntry)
     {
+        //removes entry at given position without replacing or decreasing numberOfEntries
         int index = getIndexOf(anEntry);
         bag[index] = null;
         return true;
@@ -145,7 +147,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> union(BagInterface<T> bag2) 
     {
-        //we are only getting entries from bag1 and bag2, so no need to clone them
+        //we are just getting the values, so no need to clone the bags
         BagInterface<T> result = new ResizableArrayBag<>();
         for (int i = 0 ; i < numberOfEntries ; i++)
             result.add(bag[i]);
