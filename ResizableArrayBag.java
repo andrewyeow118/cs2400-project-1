@@ -143,7 +143,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return true;
     }
 
-
     public BagInterface<T> union(BagInterface<T> bag2) 
     {
         //we are only getting entries from bag1 and bag2, so no need to clone them
@@ -157,16 +156,16 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
-        //bag1's contents do not get changed, so no need to clone bag1
         BagInterface<T> result = new ResizableArrayBag<>(); 
+        BagInterface<T> bag1Clone = this;
         BagInterface<T> bag2Clone = bag2;
-        for (int i = 0 ; i < numberOfEntries ; i++)
+        for (int i = 0 ; i < bag1Clone.getCurrentSize() ; i++)
         {
-            for (int j = 0 ; j < bag2.getCurrentSize() ; j++)
+            for (int j = 0 ; j < bag2Clone.getCurrentSize() ; j++)
             {
-                if (bag[i].equals(bag2Clone.getEntry(j)))
+                if (bag1Clone.getEntry(i).equals(bag2Clone.getEntry(j)))
                 {
-                    result.add(bag[i]);
+                    result.add(bag1Clone.getEntry(i));
                     bag2Clone.remove(bag2Clone.getEntry(j));
                     break;
                 }
@@ -177,8 +176,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> difference(BagInterface<T> bag2)
     {
-        /*bag1 and bag2 are cloned because we must remove their common items
-        and add the leftovers from bag1*/
+        //bag1 and bag2 are cloned because we must remove their common items
+        //and add the leftovers from bag1
         BagInterface<T> result = new ResizableArrayBag<>();
         BagInterface<T> bag1Clone = this;
         BagInterface<T> bag2Clone = bag2;
@@ -194,9 +193,11 @@ public class ResizableArrayBag<T> implements BagInterface<T>
                 }
             }
         }
-        for (int i = 0 ; i < this.getCurrentSize() ; i++)
-        if (bag1Clone.getEntry(i) != null)
+        for (int i = 0 ; i < bag1Clone.getCurrentSize() ; i++)
+        {
+            if (bag1Clone.getEntry(i) != null)
                 result.add(bag1Clone.getEntry(i));
+        }
         return result;
     }
 }

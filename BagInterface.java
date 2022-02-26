@@ -57,4 +57,5 @@ public interface BagInterface<T>
 
 	public BagInterface<T> difference(BagInterface<T> bag2);
 
+
 } // end BagInterface
