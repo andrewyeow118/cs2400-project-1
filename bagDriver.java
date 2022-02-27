@@ -2,6 +2,22 @@ public class bagDriver
 {
     public static void main(String[] args)
     {
+        BagInterface<String> bag1 = new ResizableArrayBag<>();
+        BagInterface<String> bag2 = new ResizableArrayBag<>();
+        String[] bag1arr = {"a", "a", "b", "c", "c", "d", "e", "e", "z", "g"};
+        String[] bag2arr = {"a", "b", "c", "c", "c", "d", "e", "f"};
+        System.out.print("Bag1:  ");
+        for (int i = 0 ; i < bag1arr.length ; i++)
+        {
+            bag1.add(bag1arr[i]);
+            System.out.print(bag1.getEntry(i) + "  ");
+        }
+        System.out.print("\n\nBag2:  ");
+        for (int i = 0 ; i < bag2arr.length ; i++)
+        {
+            bag2.add(bag2arr[i]);
+            System.out.print(bag2.getEntry(i) + "  ");
+        }
         testUnion();
         testIntersection();
         testDifference();
@@ -18,7 +34,7 @@ public class bagDriver
         for (int i = 0 ; i < bag2arr.length ; i++)
             bag2.add(bag2arr[i]);
         BagInterface<String> everything = bag1.union(bag2);
-        System.out.print("Union:  ");
+        System.out.print("\n\nUnion:  ");
         for (int i = 0 ; i < everything.getCurrentSize() ; i++)
             System.out.print(everything.getEntry(i) + "  ");
         System.out.println("\n");

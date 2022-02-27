@@ -54,10 +54,14 @@ public interface BagInterface<T>
 	//removes an entry without replacing or decreasing numberOfEntries
 	public boolean differenceRemove(T anEntry);
 
+	//union method ; combines all the contents of the two bags and returns them in one bag
 	public BagInterface<T> union(BagInterface<T> bag2);
 
+	//intersection method ; takes the common items of the two bags and returns them in one bag
 	public BagInterface<T> intersection(BagInterface<T> bag2);
 
+	/*difference method ; subtracts the contents of the bag passed as a parameter 
+	from the bag that is calling the method*/
 	public BagInterface<T> difference(BagInterface<T> bag2);
 
 } // end BagInterface
