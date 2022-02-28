@@ -10,27 +10,27 @@ public interface BagInterface<T> {
     public boolean contains(T anEntry);
     public T[] toArray();
     public T getValue(int index);
-    public BagInterface<T> copyOf();
+    public BagInterface<T> copyOf(BagInterface<T> bag);
     
-    /** this method returns an ArrayBag that contains the contents that are common 
-     * to both the ArrayBag that the method is being called on and the ArrryBag that is in 
+    /** this method returns a BagInterface<T> that contains the contents that are common 
+     * to both the BagInterface<T> that the method is being called on and the BagInterface<T> that is in 
      * the method argument 
-     * @param bag2 an Arraybag to be compared with the Arraybag that the method is being called on
-     * @return an array that contains the intersection between the two ArrayBags
+     * @param bag2 an BagInterface<T> to be compared with the BagInterface<T> that the method is being called on
+     * @return a BagInterface<T> that contains the intersection between the two BagInterface<T>s
      */
     //public BagInterface<T> intersection(BagInterface<T> bag2);
 
-    /** this method returns an ArrayBag that contains the contents of bag recieving the
-     * call to the method and the bag that is the methods's argument 
-     * @param bag2 an ArrayBag to be combined with the ArrayBag that the method is being called on
-     * @return an array that contains the union between the two ArrayBags
+    /** this method returns an BagInterface<T> that contains the contents of bag recieving the
+     * call to the method and the BagInterface<T> that is the methods's argument 
+     * @param bag2 an BagInterface<T> to be combined with the BagInterface<T> that the method is being called on
+     * @return an array that contains the union between the two BagInterface<T>s
      */
     //public BagInterface<T> union(BagInterface<T> bag2);
 
-    /** this method returns an ArrayBag that contains the contents that are not shared between 
-     * the ArrayBag that the method is being called on and the ArrayBag in the methods argument
-     * @param bag2 an Arraybag to be compared with the ArrayBag that the method is called on
-     * @return an array that contains the contents of the first ArrayBag that the second Arraybag 
+    /** this method returns an BagInterface<T> that contains the contents that are not shared between 
+     * the BagInterface<T> that the method is being called on and the BagInterface<T> in the methods argument
+     * @param bag2 an BagInterface<T> to be compared with the BagInterface<T> that the method is called on
+     * @return an array that contains the contents of the first BagInterface<T> that the second BagInterface<T> 
      * does not contain
      */
     //public BagInterface<T> difference(BagInterface<T> bag2);
