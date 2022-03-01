@@ -2,7 +2,6 @@ public class ResizableArrayBagTest
 {
     public static void main(String[] args)
     {
-        //all testcases should output: truetruefalsefalse
         testGetCurrentSize();
         testIsEmpty();
         testAdd();
@@ -10,6 +9,7 @@ public class ResizableArrayBagTest
         testRemoveEntry();
         testClear();
         testGetFrequencyOf();
+        testContains();
     }
 
     public static void testGetCurrentSize()
@@ -134,12 +134,15 @@ public class ResizableArrayBagTest
 
     public static void testContains()
     {
-
-    }
-
-    public static void toArray()
-    {
-
+        ResizableArrayBag<Integer> bag1 = new ResizableArrayBag<>();
+        int[] bag1arr = {2, 3, 4, 5, 2, 10, 3};
+        for (int i = 0 ; i < bag1arr.length ; i++)
+            bag1.add(bag1arr[i]);
+        System.out.println("\n");
+        System.out.print(bag1.contains(2) == true); //output should be true
+        System.out.print(bag1.contains(10) == true); //output should be true
+        System.out.print(bag1.contains(11) == true); //output should be false
+        System.out.print(bag1.contains(0) == true); //output should be false
     }
 
     public static void testUnion()
