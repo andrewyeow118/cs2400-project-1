@@ -18,12 +18,12 @@ public class bagDriver
             bag2.add(bag2arr[i]);
             System.out.print(bag2.getEntry(i) + "  ");
         }
-        testUnion();
-        testIntersection();
-        testDifference();
+        unionDemo();
+        intersectionDemo();
+        differenceDemo();
     }
 
-    public static void testUnion()
+    public static void unionDemo()
     {
         BagInterface<String> bag1 = new ResizableArrayBag<>();
         BagInterface<String> bag2 = new ResizableArrayBag<>();
@@ -40,7 +40,7 @@ public class bagDriver
         System.out.println("\n");
     }
 
-    public static void testIntersection()
+    public static void intersectionDemo()
     {
         BagInterface<String> bag1 = new ResizableArrayBag<>();
         BagInterface<String> bag2 = new ResizableArrayBag<>();
@@ -57,7 +57,7 @@ public class bagDriver
         System.out.println("\n");
     }
 
-    public static void testDifference()
+    public static void differenceDemo()
     {
         BagInterface<String> bag1 = new ResizableArrayBag<>();
         BagInterface<String> bag2 = new ResizableArrayBag<>();
