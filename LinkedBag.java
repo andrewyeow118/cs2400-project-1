@@ -257,16 +257,17 @@ public class LinkedBag<T> implements BagInterface<T> {
     	//copy of inputted bag
     	BagInterface<T> bag2Copy = copyOf(bag2);
     	
-    	//Removes every element from bag1, and if that element exists
-    	while(!bag1Copy.isEmpty()) {
-    		T temp = bag1Copy.remove();
-    		if (!bag2Copy.contains(temp)) {
-    			bag2Copy.remove(temp);
-    			bag3.add(temp);
-    		}		
+    	//Removes every element from bag2, and if that element exists in bag 1, removes it as well
+    	while(!bag2Copy.isEmpty()) {
+    		T temp = bag2Copy.remove();
+    		if (bag1Copy.contains(temp))
+    			bag1Copy.remove(temp);		
     	}
     	
-    	return bag3
+    	//sets bag3 equal to the remaining contents of the copy of bag1
+    	bag3 = bag1Copy;
+    	
+    	return bag3;
     }
 	
 	/**
