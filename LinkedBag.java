@@ -210,6 +210,8 @@ public class LinkedBag<T> implements BagInterface<T> {
      */
     public BagInterface<T> union(BagInterface<T> bag2) throws Exception {
     	
+    	checkIntegrity();
+    	
     	//sanitize user input
     	if (bag2 == null)
     		throw new Exception("The given argument is null");
@@ -243,6 +245,9 @@ public class LinkedBag<T> implements BagInterface<T> {
      * does not contain
      */
     public BagInterface<T> difference(BagInterface<T> bag2) throws Exception {
+    	
+    	
+    	checkIntegrity();
     	
     	//sanitize user input
     	if (bag2 == null)
