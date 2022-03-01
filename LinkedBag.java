@@ -214,7 +214,7 @@ public class LinkedBag<T> implements BagInterface<T> {
     	if (bag2 == null)
     		throw new Exception("The given argument is null");
     				
-    	//new intersection bag
+    	//new union bag
     	BagInterface<T> bag3 = new LinkedBag();
     			
     	//copy of this bag
@@ -223,15 +223,50 @@ public class LinkedBag<T> implements BagInterface<T> {
     	//copy of inputted bag
     	BagInterface<T> bag2Copy = copyOf(bag2);
     	
+    	//Add contents of this bag to bag3
     	while(!bag1Copy.isEmpty()) {
     		bag3.add(bag1Copy.remove());
     	}
     	
+    	//Add contents of argument bag to bag3
     	while(!bag2Copy.isEmpty()) {
     		bag3.add(bag2Copy.remove());
     	}
     	
     	return bag3;
+    }
+    
+    /** this method returns a LinkedBag that contains the contents that are not shared between 
+     * the LinkedBag that the method is being called on and the LinkedBag in the methods argument
+     * @param bag2 a Linkedbag to be compared with the LinkedBag that the method is called on
+     * @return a LinkedBag that contains the contents of the first LinkedBag that the second Linkedbag 
+     * does not contain
+     */
+    public BagInterface<T> difference(BagInterface<T> bag2) {
+    	
+    	//sanitize user input
+    	if (bag2 == null)
+    		throw new Exception("The given argument is null");
+    				
+    	//new intersection bag
+    	BagInterface<T> bag3 = new LinkedBag();
+    	
+    	//copy of this bag
+    	BagInterface<T> bag1Copy = copyOf(this);
+    	
+    	//copy of inputted bag
+    	BagInterface<T> bag2Copy = copyOf(bag2);
+    	
+    	//Removes every element from bag1, and if that element exists
+    	while(!bag1Copy.isEmpty()) {
+    		T temp = bag1Copy.remove();
+    		if (!bag2Copy.contains(temp)) {
+    			bag2Copy.remove(temp);
+    			bag3.add(temp);
+    		}		
+    	}
+    	
+    	return bag3
     }
 	
 	/**
