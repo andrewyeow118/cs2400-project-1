@@ -20,7 +20,10 @@ public class LinkedBag<T> implements BagInterface<T> {
         BagInterface<T> newBag = new LinkedBag<T>();
 
         Node temp = firstNode;
-        for (int x = 0; x < this.getCurrentSize(); x++) {
+       
+        int size = newBag.getCurrentSize();
+    	
+    	for (int x = 0; x < size; x++) {
             newBag.add(temp.getData());
             temp = temp.getNextNode();
         }
@@ -184,6 +187,20 @@ public class LinkedBag<T> implements BagInterface<T> {
         return tempArray;
     }
     
+    private void sanitizeBag(BagInterface<T> bag) throws Exception{
+    	BagInterface<T> newBag = copyOf(bag);
+    	
+    	int size = newBag.getCurrentSize();
+    	
+    	for (int x = 0; x < size; x++) {
+    		if (newBag.remove().equals(null)) {
+    			throw new Exception("bag contains a null value");
+    		}
+    			
+    	}
+    }
+    
+    
     /** this method returns a LinkedBag that contains the contents that are common 
      * to both the LinkedBag that the method is being called on and the LinkedBag that is in 
      * the method argument 
@@ -197,7 +214,8 @@ public class LinkedBag<T> implements BagInterface<T> {
         if (bag2 == null) {
             throw new Exception("The given argument is null");
         }
-
+        sanitizeBag(bag2);
+        sanitizeBag(this);
         checkIntegrity();
             
         //new intersection bag
@@ -233,7 +251,8 @@ public class LinkedBag<T> implements BagInterface<T> {
         //sanitize user input
         if (bag2 == null)
             throw new Exception("The given argument is null");
-                    
+        sanitizeBag(bag2);
+        sanitizeBag(this);            
         //new union bag
         BagInterface<T> bag3 = new LinkedBag<T>();
                 
@@ -266,7 +285,8 @@ public class LinkedBag<T> implements BagInterface<T> {
         
         
         checkIntegrity();
-        
+        sanitizeBag(bag2);
+        sanitizeBag(this);
         //sanitize user input
         if (bag2 == null)
             throw new Exception("The given argument is null");
