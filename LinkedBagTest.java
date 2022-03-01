@@ -1,5 +1,10 @@
 public class LinkedBagTest {
+<<<<<<< HEAD
     public static void main(String [] args) throws Exception{
+=======
+    
+	public static void main(String [] args){
+>>>>>>> 518c6efe2637ec4abcb7615718f449ccb9d44a3b
         BagInterface<Integer> bag1 = new LinkedBag<>();
         BagInterface<Integer> bag2 = new LinkedBag<>();
         
