@@ -169,7 +169,39 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return tempArray;
 	}
 	
-	
+	/** this method returns a LinkedBag that contains the contents that are common 
+     * to both the LinkedBag that the method is being called on and the LinkedBag that is in 
+     * the method argument 
+     * @param bag2 a Linkedbag to be compared with the Linkedbag that the method is being called on
+     * @return a LinkedBag that contains the intersection between the two LinkedBags
+     */
+	public BagInterface<T> intersection(BagInterface<T> bag2) throws Exception {
+		checkIntegrity();
+		
+		//sanitize user input
+		if (bag2 == null)
+			throw new Exception("The given argument is null");
+			
+		//new intersection bag
+		BagInterface<T> bag3 = new LinkedBag();
+		
+		//copy of this bag
+		BagInterface<T> bag1Copy = copyOf(this);
+		
+		//copy of inputted bag
+		BagInterface<T> bag2Copy = copyOf(bag2);
+		
+		//adds the intersection of bag 1 & bag 2 to bag3
+		while(!bag2Copy.isEmpty()) {
+			T temp = bag2Copy.remove;
+			if (bag1Copy.contains(temp)) {
+				bag3.add(temp);
+				bag1Copy.remove(temp);
+			}
+		}
+		
+		return bag3;
+	}
 	
 	/**
 	 * 
