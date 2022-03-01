@@ -9,7 +9,7 @@ public interface BagInterface<T> {
     public int getFrequencyOf(T anEntry);
     public boolean contains(T anEntry);
     public T[] toArray();
-    public BagInterface<T> copyOf(BagInterface<T> bag);
+    
     
     /** this method returns a BagInterface<T> that contains the contents that are common 
      * to both the BagInterface<T> that the method is being called on and the BagInterface<T> that is in 
