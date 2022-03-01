@@ -59,4 +59,3 @@ public class LinkedBagTest {
         System.out.println(bag1.difference(bag2));
     }
 }
-   
