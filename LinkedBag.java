@@ -187,6 +187,11 @@ public class LinkedBag<T> implements BagInterface<T> {
         return tempArray;
     }
     
+    /**
+     * Throws an exception if the given bag has a node containing the data "null"
+     * @param bag
+     * @throws Exception
+     */
     private void sanitizeBag(BagInterface<T> bag) throws Exception{
     	BagInterface<T> newBag = copyOf(bag);
     	
