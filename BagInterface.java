@@ -9,6 +9,9 @@ public interface BagInterface<T> {
     public int getFrequencyOf(T anEntry);
     public boolean contains(T anEntry);
     public T[] toArray();
+    public T getEntry(int index);
+    public boolean differenceRemove(T anEntry);
+
     
     
     /** this method returns a BagInterface<T> that contains the contents that are common 

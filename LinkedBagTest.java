@@ -1,5 +1,10 @@
 public class LinkedBagTest {  
-	public static void main(String[] args) throws Exception {
+	
+    /** 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
         BagInterface<Integer> bag1 = new LinkedBag<>();
         BagInterface<Integer> bag2 = new LinkedBag<>();
         
@@ -8,6 +13,11 @@ public class LinkedBagTest {
         bag1.add(5);
         bag2.add(3);
         //union is 3, 5, 3
+        BagInterface<Integer> output = bag1.union(bag2);
+        Integer[] outputArray = output.toArray();
+        for(int i = 0; i < outputArray.length; i++){
+            System.out.print(outputArray[i] + ", ");
+        }
         System.out.println(bag1.union(bag2));
         //intersection is 3
         System.out.println(bag1.intersection(bag2));
