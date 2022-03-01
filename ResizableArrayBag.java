@@ -7,11 +7,13 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     private boolean integrityOK = false;
     private static final int MAX_CAPACITY = 10000;
     
+    //default constructor (no given capacity)
     public ResizableArrayBag()
     {
         this(defaultCapacity);
     }
 
+    //constructor with given capacity
     public ResizableArrayBag(int capacity)
     {
         if (capacity <= MAX_CAPACITY)
@@ -106,9 +108,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         for (int i = 0 ; i < numberOfEntries ; i++)
         {
             if (bag[i].equals(anEntry))
-            {
                 count++;
-            }
         }
         return count;
     }
@@ -147,7 +147,9 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> union(BagInterface<T> bag2) 
     {
-        //we are just getting the values, so no need to clone the bags
+        /*  union method: returns all the items of two bags in one bag ;
+         *  bag1 and bag2 do not need to be cloned because we are just getting
+         *  their values and adding to the returned bag */
         BagInterface<T> result = new ResizableArrayBag<>();
         for (int i = 0 ; i < numberOfEntries ; i++)
             result.add(bag[i]);
@@ -158,6 +160,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> intersection(BagInterface<T> bag2)
     {
+        /*  intersection method: returns the common items of two bags in one bag ;
+         *  bag1 and bag2 are cloned because we must remove their common items
+         *  and add the leftovers from bag1 */
+
         BagInterface<T> result = new ResizableArrayBag<>(); 
         BagInterface<T> bag1Clone = this;
         BagInterface<T> bag2Clone = bag2;
@@ -178,8 +184,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     public BagInterface<T> difference(BagInterface<T> bag2)
     {
-        //bag1 and bag2 are cloned because we must remove their common items
-        //and add the leftovers from bag1
+        /*  difference method: returns the difference of bag calling the method 
+         *  with bag passed as paramter all in one bag ;
+         *  bag1 and bag2 are cloned because we must remove their common items
+         *  and add the leftovers from bag1 */
         BagInterface<T> result = new ResizableArrayBag<>();
         BagInterface<T> bag1Clone = this;
         BagInterface<T> bag2Clone = bag2;

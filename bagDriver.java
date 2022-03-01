@@ -2,6 +2,7 @@ public class bagDriver
 {
     public static void main(String[] args)
     {
+        //demos a typical usage of the three methods: union intersection, difference
         BagInterface<String> bag1 = new ResizableArrayBag<>();
         BagInterface<String> bag2 = new ResizableArrayBag<>();
         String[] bag1arr = {"a", "a", "b", "c", "c", "d", "e", "e", "z", "g"};

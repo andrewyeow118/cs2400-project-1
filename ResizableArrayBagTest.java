@@ -2,6 +2,7 @@ public class ResizableArrayBagTest
 {
     public static void main(String[] args)
     {
+        //outputs should be truetruefalsefalse
         testGetCurrentSize();
         testIsEmpty();
         testAdd();
@@ -10,6 +11,8 @@ public class ResizableArrayBagTest
         testClear();
         testGetFrequencyOf();
         testContains();
+
+        //outputs should be truetruetruefalsefalse
         testUnion();
         testIntersection();
         testDifference();
