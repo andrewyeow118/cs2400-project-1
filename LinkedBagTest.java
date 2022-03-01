@@ -1,5 +1,5 @@
 public class LinkedBagTest {
-    public static void main(String [] args){
+    public static void main(String [] args) throws Exception{
         BagInterface<Integer> bag1 = new LinkedBag<>();
         BagInterface<Integer> bag2 = new LinkedBag<>();
         

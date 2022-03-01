@@ -4,6 +4,7 @@
  *
  * @param <T>
  */
+import java.lang.Exception;
 public class LinkedBag<T> implements BagInterface<T> {
 	
 	private Node firstNode;
