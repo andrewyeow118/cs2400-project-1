@@ -1,10 +1,5 @@
-public class LinkedBagTest {
-<<<<<<< HEAD
-    public static void main(String [] args) throws Exception{
-=======
-    
-	public static void main(String [] args){
->>>>>>> 518c6efe2637ec4abcb7615718f449ccb9d44a3b
+public class LinkedBagTest {  
+	public static void main(String[] args) throws Exception {
         BagInterface<Integer> bag1 = new LinkedBag<>();
         BagInterface<Integer> bag2 = new LinkedBag<>();
         
@@ -16,7 +11,7 @@ public class LinkedBagTest {
         System.out.println(bag1.union(bag2));
         //intersection is 3
         System.out.println(bag1.intersection(bag2));
-        //diference is 5
+        //difference is 5
         System.out.println(bag1.difference(bag2));
 
         bag1.clear();
@@ -60,7 +55,8 @@ public class LinkedBagTest {
         System.out.println(bag1.union(bag2));
         //intersection throw exception
         System.out.println(bag1.intersection(bag2));
-        //diference throw exception
+        //difference throw exception
         System.out.println(bag1.difference(bag2));
     }
 }
+   
