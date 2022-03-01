@@ -208,7 +208,7 @@ public class LinkedBag<T> implements BagInterface<T> {
      * @param bag2 a LinkedBag to be combined with the LinkedBag that the method is being called on
      * @return a LinkedBag that contains the union between the two LinkedBags
      */
-    public BagInterface<T> union(BagInterface<T> bag2) {
+    public BagInterface<T> union(BagInterface<T> bag2) throws Exception {
     	
     	//sanitize user input
     	if (bag2 == null)
@@ -242,7 +242,7 @@ public class LinkedBag<T> implements BagInterface<T> {
      * @return a LinkedBag that contains the contents of the first LinkedBag that the second Linkedbag 
      * does not contain
      */
-    public BagInterface<T> difference(BagInterface<T> bag2) {
+    public BagInterface<T> difference(BagInterface<T> bag2) throws Exception {
     	
     	//sanitize user input
     	if (bag2 == null)
