@@ -203,6 +203,37 @@ public class LinkedBag<T> implements BagInterface<T> {
 		return bag3;
 	}
 	
+	/** this method returns a LinkedBag that contains the contents of bag recieving the
+     * call to the method and the bag that is the methods's argument 
+     * @param bag2 a LinkedBag to be combined with the LinkedBag that the method is being called on
+     * @return a LinkedBag that contains the union between the two LinkedBags
+     */
+    public BagInterface<T> union(BagInterface<T> bag2) {
+    	
+    	//sanitize user input
+    	if (bag2 == null)
+    		throw new Exception("The given argument is null");
+    				
+    	//new intersection bag
+    	BagInterface<T> bag3 = new LinkedBag();
+    			
+    	//copy of this bag
+    	BagInterface<T> bag1Copy = copyOf(this);
+    			
+    	//copy of inputted bag
+    	BagInterface<T> bag2Copy = copyOf(bag2);
+    	
+    	while(!bag1Copy.isEmpty()) {
+    		bag3.add(bag1Copy.remove());
+    	}
+    	
+    	while(!bag2Copy.isEmpty()) {
+    		bag3.add(bag2Copy.remove());
+    	}
+    	
+    	return bag3;
+    }
+	
 	/**
 	 * 
 	 * @author dylan
