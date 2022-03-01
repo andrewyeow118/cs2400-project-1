@@ -35,7 +35,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 	 * @return true if firstNode is null
 	 */
     public boolean isEmpty(){
-        return firstNode = null;
+        return firstNode == null;
     }
 	
 	/**
@@ -162,7 +162,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 		Node currentNode = firstNode;
 		T[] tempArray = new T[numberOfEntries];
 		
-		for (x = 0; x < numberOfEntries; x++) {
+		for (int x = 0; x < numberOfEntries; x++) {
 			tempArray[x] = currentNode.getData();
 		}
 		
@@ -193,7 +193,7 @@ public class LinkedBag<T> implements BagInterface<T> {
 		
 		//adds the intersection of bag 1 & bag 2 to bag3
 		while(!bag2Copy.isEmpty()) {
-			T temp = bag2Copy.remove;
+			T temp = bag2Copy.remove();
 			if (bag1Copy.contains(temp)) {
 				bag3.add(temp);
 				bag1Copy.remove(temp);
