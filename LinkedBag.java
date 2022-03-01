@@ -17,15 +17,16 @@ public class LinkedBag<T> implements BagInterface<T> {
     }
     
     public BagInterface<T> copyOf(BagInterface<T> bag) {
-        BagInterface<T> newBag = new LinkedBag<T>();
+        
+    	BagInterface<T> newBag = new LinkedBag<T>();
 
-        Node temp = firstNode;
+        Node temp = ((LinkedBag<T>) bag).getFirst();
        
-        int size = newBag.getCurrentSize();
+        int size = bag.getCurrentSize();
     	
     	for (int x = 0; x < size; x++) {
-            newBag.add(temp.getData());
-            temp = temp.getNextNode();
+    		newBag.add(temp.getData());
+    		temp = temp.getNextNode();	
         }
 
         return newBag;
@@ -64,7 +65,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         Node newNode = new Node(newEntry);
         newNode.setNextNode(firstNode);
         firstNode = newNode;
-        numberOfEntries++;
+        numberOfEntries += 1;
         return true;
     }
     
@@ -72,6 +73,13 @@ public class LinkedBag<T> implements BagInterface<T> {
      * Removes the first node in the linked chain, and sets the second node to 1st
      * @return the removed data
      */
+    public Node getFirst() {
+    	Node result = null;
+        if (firstNode != null) {
+            result = firstNode;
+        }
+        return result;
+    }
     public T remove( ) {
         checkIntegrity();
         
@@ -79,7 +87,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         if (firstNode != null) {
             result = firstNode.getData();
             firstNode = firstNode.getNextNode();
-            numberOfEntries--;
+            numberOfEntries -= 1;
         }
         return result;
     }
@@ -87,7 +95,7 @@ public class LinkedBag<T> implements BagInterface<T> {
     /**
      * retrieves reference to Node containing specified data, or null if data is missing
      * @param anEntry object to search for
-     * @return reference to Node containg specified object
+     * @return reference to Node containing specified object
      */
     public Node getReferenceTo(T anEntry) {
         checkIntegrity();
@@ -195,16 +203,35 @@ public class LinkedBag<T> implements BagInterface<T> {
     private void sanitizeBag(BagInterface<T> bag) throws Exception{
     	BagInterface<T> newBag = copyOf(bag);
     	
-    	int size = newBag.getCurrentSize();
+    	int size = bag.getCurrentSize();
     	
     	for (int x = 0; x < size; x++) {
-    		if (newBag.remove().equals(null)) {
+    		if (newBag.remove() == null) {
     			throw new Exception("bag contains a null value");
     		}
     			
     	}
     }
     
+    /**
+     * Returns the bag as a string
+     */
+    public String toString() {	
+       String result = "";
+       
+       Node currentNode = this.firstNode;
+       
+       while(!(currentNode == null)){
+            result += currentNode.getData();
+            if(!(currentNode.getNextNode() == null)){
+                result += ", ";
+            }
+            currentNode = currentNode.getNextNode();
+       }
+
+            
+       return "List: " + result;
+    }
     
     /** this method returns a LinkedBag that contains the contents that are common 
      * to both the LinkedBag that the method is being called on and the LinkedBag that is in 
@@ -257,24 +284,24 @@ public class LinkedBag<T> implements BagInterface<T> {
         if (bag2 == null)
             throw new Exception("The given argument is null");
         sanitizeBag(bag2);
-        sanitizeBag(this);            
+        sanitizeBag(this);      
         //new union bag
         BagInterface<T> bag3 = new LinkedBag<T>();
                 
         //copy of this bag
         BagInterface<T> bag1Copy = copyOf(this);
                 
-        //copy of inputted bag
+        //copy of inputed bag
         BagInterface<T> bag2Copy = copyOf(bag2);
         
         //Add contents of this bag to bag3
         while(!bag1Copy.isEmpty()) {
-            bag3.add(bag1Copy.remove());
+        	bag3.add(bag1Copy.remove());
         }
         
         //Add contents of argument bag to bag3
         while(!bag2Copy.isEmpty()) {
-            bag3.add(bag2Copy.remove());
+        	bag3.add(bag2Copy.remove());
         }
         
         return bag3;

@@ -154,7 +154,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         for (int i = 0 ; i < numberOfEntries ; i++)
             result.add(bag[i]);
         for (int j = 0 ; j < bag2.getCurrentSize() ; j++)
-            result.add(bag2.getEntry(j));
+            result.add(((ResizableArrayBag<T>) bag2).getEntry(j));
         return result;
     }
 
@@ -171,10 +171,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             for (int j = 0 ; j < bag2Clone.getCurrentSize() ; j++)
             {
-                if (bag1Clone.getEntry(i).equals(bag2Clone.getEntry(j)))
+                if (((ResizableArrayBag<T>) bag1Clone).getEntry(i).equals(((ResizableArrayBag<T>) bag2Clone).getEntry(j)))
                 {
-                    result.add(bag1Clone.getEntry(i));
-                    bag2Clone.remove(bag2Clone.getEntry(j));
+                    result.add(((ResizableArrayBag<T>) bag1Clone).getEntry(i));
+                    bag2Clone.remove(((ResizableArrayBag<T>) bag2Clone).getEntry(j));
                     break;
                 }
             }
@@ -195,18 +195,18 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             for (int j = 0 ; j < bag2Clone.getCurrentSize() ; j++)
             {
-                if (bag1Clone.getEntry(i).equals(bag2Clone.getEntry(j)))
+                if (((ResizableArrayBag<T>) bag1Clone).getEntry(i).equals(((ResizableArrayBag<T>) bag2Clone).getEntry(j)))
                 {
-                    bag1Clone.differenceRemove(bag1Clone.getEntry(i));
-                    bag2Clone.remove(bag2Clone.getEntry(j));
+                    ((ResizableArrayBag<T>) bag1Clone).differenceRemove(((ResizableArrayBag<T>) bag1Clone).getEntry(i));
+                    bag2Clone.remove(((ResizableArrayBag<T>) bag2Clone).getEntry(j));
                     break;
                 }
             }
         }
         for (int i = 0 ; i < bag1Clone.getCurrentSize() ; i++)
         {
-            if (bag1Clone.getEntry(i) != null)
-                result.add(bag1Clone.getEntry(i));
+            if (((ResizableArrayBag<T>) bag1Clone).getEntry(i) != null)
+                result.add(((ResizableArrayBag<T>) bag1Clone).getEntry(i));
         }
         return result;
     }
